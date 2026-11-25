@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Launch Radar — which pre-token protocol is worth farming next</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <p class="kicker">TOKEN LAUNCH RADAR &middot; DEFI LLAMA SNAPSHOT <span id="asOf">2026-11-14</span></p>
+    <h1>Which pre-token protocol is worth farming next?</h1>
+    <p class="lede">Every protocol below records no token. Each is ranked by its implied launch value &mdash; what its token would be worth if its record stayed as it is &mdash; computed from the snapshot&rsquo;s own figures: TVL, 7-day growth, and how long it has run with no token. Click any row for its value equation, its story, and its farm plan.</p>
+    <div class="strip" id="strip">
+      <div class="chip"><b id="stWatch">40/40</b><span>watchlist covered</span></div>
+      <div class="chip"><b id="stRows">198</b><span>board rows</span></div>
+      <div class="chip"><b id="stMono">yes</b><span>values fall with rank</span></div>
+      <div class="chip"><b id="stFarm">yes</b><span>farm plans complete</span></div>
+      <div class="chip"><b id="stPre">342</b><span>pre-token protocols in snapshot</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card" id="modelCard">
+    <h2>How the value is worked out</h2>
+    <p class="formula" id="formula">implied = 1.2845 &times; tvl<sup>0.85</sup> &times; growth &times; age &times; odds</p>
+    <p class="fine">All weights are fixed constants. Nothing is fitted at run time and no protocol name is ever consulted: the same figures rank any snapshot. The implied value is this radar&rsquo;s own claim, never a market price.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section class="card">
+    <h2>The board <span class="count" id="rowCount"></span></h2>
+    <div class="controls">
+      <label>Search <input id="q" type="search" placeholder="protocol name or slug"></label>
+      <label>Category <select id="cat"><option value="">All categories</option></select></label>
+      <label>Sort by <select id="sort">
+        <option value="implied">Implied value</option>
+        <option value="tvl">TVL</option>
+        <option value="growth">7-day growth</option>
+        <option value="age">Age (days tracked)</option>
+      </select></label>
+      <label class="check"><input id="onlyWatch" type="checkbox"> Watchlist only</label>
+    </div>
+    <div class="tablewrap">
+      <table id="board">
+        <thead><tr>
+          <th data-k="rank">#</th><th data-k="name">Protocol</th><th data-k="category">Category</th>
+          <th>Chains</th><th data-k="tvl">TVL</th><th data-k="growth">7d</th>
+          <th data-k="age">Age</th><th data-k="implied">Implied value</th><th>Status</th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p class="fine" id="boardNote"></p>
+  </section>
+
+  <section class="card detail" id="detail" hidden>
+    <h2 id="dName"></h2>
+    <p class="dmeta" id="dMeta"></p>
+    <h3>Value equation</h3>
+    <p class="formula" id="dEq"></p>
+    <div class="eqgrid" id="dTerms"></div>
+    <h3>Why this rank</h3>
+    <p id="dNarrative"></p>
+    <h3>Farm plan</h3>
+    <ol id="dFarm"></ol>
+    <p class="fine">Costs are gas plus the capital each step names; durations are wall-clock time per action and the season the plan runs. Do your own checks before depositing: this radar records no token, it never promises one will exist.</p>
+  </section>
+
+  <section class="card">
+    <h2>Already trading &mdash; kept off the board</h2>
+    <p class="fine">These protocols record a token that already trades, so the radar does not rank them as launches. Their market-cap-to-TVL ratios are the reality check behind the size curve: the traded cohort&rsquo;s median is 0.169, and the curve prices pre-token launches below it.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Protocol</th><th>Category</th><th>TVL</th><th>Market cap</th><th>Mcap / TVL</th></tr></thead>
+        <tbody id="trading"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer class="fine">
+    Built from the sealed snapshot of 2026-11-14 (758 protocols at or above $5M TVL; floor $50M). The watchlist is a floor, never a ceiling: the board adds the pre-token protocols at or above the floor that pass the watchlist rule on the snapshot&rsquo;s own fields, plus the largest pre-token protocols below the floor. A protocol on the board &ldquo;records no token&rdquo; in DefiLlama&rsquo;s record &mdash; that is the record, not proof it has none.
+  </footer>
+</main>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
